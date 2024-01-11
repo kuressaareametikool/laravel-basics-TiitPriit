@@ -18,119 +18,119 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-DROP TABLE IF EXISTS `authors`;
-CREATE TABLE `authors` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `first_name` varchar(255) NOT NULL,
-  `last_name` varchar(255) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1301 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `authors`;
+-- CREATE TABLE `authors` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `first_name` varchar(255) NOT NULL,
+--   `last_name` varchar(255) NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=1301 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `book_authors`;
-CREATE TABLE `book_authors` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `book_id` bigint(20) unsigned NOT NULL,
-  `author_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2377 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `book_authors`;
+-- CREATE TABLE `book_authors` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `book_id` bigint(20) unsigned NOT NULL,
+--   `author_id` bigint(20) unsigned NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=2377 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `books`;
-CREATE TABLE `books` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `release_date` year(4) NOT NULL,
-  `cover_path` varchar(255) DEFAULT NULL,
-  `language` varchar(255) NOT NULL,
-  `summary` text DEFAULT NULL,
-  `price` decimal(13,4) NOT NULL,
-  `stock_saldo` varchar(255) NOT NULL,
-  `pages` int(11) NOT NULL,
-  `type` enum('new','used','ebook') NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2227 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `books`;
+-- CREATE TABLE `books` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `title` varchar(255) NOT NULL,
+--   `release_date` year(4) NOT NULL,
+--   `cover_path` varchar(255) DEFAULT NULL,
+--   `language` varchar(255) NOT NULL,
+--   `summary` text DEFAULT NULL,
+--   `price` decimal(13,4) NOT NULL,
+--   `stock_saldo` varchar(255) NOT NULL,
+--   `pages` int(11) NOT NULL,
+--   `type` enum('new','used','ebook') NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=2227 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `clients`;
-CREATE TABLE `clients` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(255) NOT NULL,
-  `first_name` varchar(255) DEFAULT NULL,
-  `last_name` varchar(255) DEFAULT NULL,
-  `email` varchar(255) DEFAULT NULL,
-  `password` varchar(255) DEFAULT NULL,
-  `address` varchar(255) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `clients`;
+-- CREATE TABLE `clients` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `username` varchar(255) NOT NULL,
+--   `first_name` varchar(255) DEFAULT NULL,
+--   `last_name` varchar(255) DEFAULT NULL,
+--   `email` varchar(255) DEFAULT NULL,
+--   `password` varchar(255) DEFAULT NULL,
+--   `address` varchar(255) DEFAULT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=2001 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `failed_jobs`;
-CREATE TABLE `failed_jobs` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) NOT NULL,
-  `connection` text NOT NULL,
-  `queue` text NOT NULL,
-  `payload` longtext NOT NULL,
-  `exception` longtext NOT NULL,
-  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `failed_jobs`;
+-- CREATE TABLE `failed_jobs` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `uuid` varchar(255) NOT NULL,
+--   `connection` text NOT NULL,
+--   `queue` text NOT NULL,
+--   `payload` longtext NOT NULL,
+--   `exception` longtext NOT NULL,
+--   `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+--   PRIMARY KEY (`id`),
+--   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `migrations`;
-CREATE TABLE `migrations` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) NOT NULL,
-  `batch` int(11) NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `migrations`;
+-- CREATE TABLE `migrations` (
+--   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+--   `migration` varchar(255) NOT NULL,
+--   `batch` int(11) NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `orders`;
-CREATE TABLE `orders` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `delivery_address` varchar(255) NOT NULL,
-  `order_date` datetime NOT NULL,
-  `status` enum('ordered','paid','sent') NOT NULL,
-  `client_id` bigint(20) unsigned NOT NULL,
-  `book_id` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2301 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `orders`;
+-- CREATE TABLE `orders` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `delivery_address` varchar(255) NOT NULL,
+--   `order_date` datetime NOT NULL,
+--   `status` enum('ordered','paid','sent') NOT NULL,
+--   `client_id` bigint(20) unsigned NOT NULL,
+--   `book_id` bigint(20) unsigned NOT NULL,
+--   PRIMARY KEY (`id`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=2301 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `password_reset_tokens`;
-CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) NOT NULL,
-  `token` varchar(255) NOT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `password_reset_tokens`;
+-- CREATE TABLE `password_reset_tokens` (
+--   `email` varchar(255) NOT NULL,
+--   `token` varchar(255) NOT NULL,
+--   `created_at` timestamp NULL DEFAULT NULL,
+--   PRIMARY KEY (`email`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `personal_access_tokens`;
-CREATE TABLE `personal_access_tokens` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `tokenable_type` varchar(255) NOT NULL,
-  `tokenable_id` bigint(20) unsigned NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `token` varchar(64) NOT NULL,
-  `abilities` text DEFAULT NULL,
-  `last_used_at` timestamp NULL DEFAULT NULL,
-  `expires_at` timestamp NULL DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
-  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `personal_access_tokens`;
+-- CREATE TABLE `personal_access_tokens` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `tokenable_type` varchar(255) NOT NULL,
+--   `tokenable_id` bigint(20) unsigned NOT NULL,
+--   `name` varchar(255) NOT NULL,
+--   `token` varchar(64) NOT NULL,
+--   `abilities` text DEFAULT NULL,
+--   `last_used_at` timestamp NULL DEFAULT NULL,
+--   `expires_at` timestamp NULL DEFAULT NULL,
+--   `created_at` timestamp NULL DEFAULT NULL,
+--   `updated_at` timestamp NULL DEFAULT NULL,
+--   PRIMARY KEY (`id`),
+--   UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+--   KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
-DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) NOT NULL,
-  `email` varchar(255) NOT NULL,
-  `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) NOT NULL,
-  `remember_token` varchar(100) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL,
-  PRIMARY KEY (`id`),
-  UNIQUE KEY `users_email_unique` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
+-- DROP TABLE IF EXISTS `users`;
+-- CREATE TABLE `users` (
+--   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+--   `name` varchar(255) NOT NULL,
+--   `email` varchar(255) NOT NULL,
+--   `email_verified_at` timestamp NULL DEFAULT NULL,
+--   `password` varchar(255) NOT NULL,
+--   `remember_token` varchar(100) DEFAULT NULL,
+--   `created_at` timestamp NULL DEFAULT NULL,
+--   `updated_at` timestamp NULL DEFAULT NULL,
+--   PRIMARY KEY (`id`),
+--   UNIQUE KEY `users_email_unique` (`email`)
+-- ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;;
 
 INSERT INTO `authors` (`id`, `first_name`, `last_name`) VALUES
 (1, 'Cristin', 'Spur'),
@@ -8068,16 +8068,16 @@ INSERT INTO `clients` (`id`, `username`, `first_name`, `last_name`, `email`, `pa
 (1999, 'fspeererq', 'Forrest', 'Speere', 'fspeererq@typepad.com', NULL, '4345 Katie Terrace'),
 (2000, 'gmellodyrr', 'Gard', 'Mellody', 'gmellodyrr@4shared.com', NULL, '8 David Trail');
 
-INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
-(1, '2014_10_12_000000_create_users_table', 1),
-(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
-(3, '2019_08_19_000000_create_failed_jobs_table', 1),
-(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_09_04_123743_create_books_table', 1),
-(6, '2023_09_04_132044_create_authors_table', 1),
-(7, '2023_09_04_133115_create_clients_table', 1),
-(8, '2023_09_04_133537_create_book_authors_table', 1),
-(9, '2023_09_04_134044_create_orders_table', 1);
+-- INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
+-- (1, '2014_10_12_000000_create_users_table', 1),
+-- (2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
+-- (3, '2019_08_19_000000_create_failed_jobs_table', 1),
+-- (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
+-- (5, '2023_09_04_123743_create_books_table', 1),
+-- (6, '2023_09_04_132044_create_authors_table', 1),
+-- (7, '2023_09_04_133115_create_clients_table', 1),
+-- (8, '2023_09_04_133537_create_book_authors_table', 1),
+-- (9, '2023_09_04_134044_create_orders_table', 1);
 
 INSERT INTO `orders` (`id`, `delivery_address`, `order_date`, `status`, `client_id`, `book_id`) VALUES
 (1, '2323 Chinook Plaza', '2015-12-03 00:00:00', 'sent', 558, 427),
@@ -10389,8 +10389,8 @@ INSERT INTO `orders` (`id`, `delivery_address`, `order_date`, `status`, `client_
 (2299, '6146 Bultman Circle', '2017-10-03 00:00:00', 'ordered', 1473, 2024),
 (2300, '5 Burning Wood Parkway', '2017-10-01 00:00:00', 'ordered', 1791, 1687);
 
-INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'test', 'test@test.ee', NULL, '$2y$10$kZScjHDVqCnIjpVFEoPJ3.JAd6OtyN2BArW8qhvJrFvAlXtppByS6', NULL, '2023-10-13 08:46:14', '2023-10-13 08:46:14');
+-- INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
+-- (1, 'test', 'test@test.ee', NULL, '$2y$10$kZScjHDVqCnIjpVFEoPJ3.JAd6OtyN2BArW8qhvJrFvAlXtppByS6', NULL, '2023-10-13 08:46:14', '2023-10-13 08:46:14');
 
 
 
