@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class migrations extends Model
 {
     use HasFactory;
+    public $timestamps = false;
+
+    public function authors()
+    {
+        return $this->belongsToMany(Author::class, 'book_authors');
+    }
 }

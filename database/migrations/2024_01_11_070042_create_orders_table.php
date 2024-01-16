@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\clients;
+use App\Models\Client;
 use App\Models\book;
 
 return new class extends Migration
@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string("delivery_address");
             $table->dateTime('order_date');
             $table->enum('status', ['ordered', 'paid', 'sent']);
-            $table->foreignIdFor(clients::class);
-            $table->foreignIdFor(book::class);
+            $table->foreignIdFor(Client::class);
+            $table->foreignIdFor(Book::class);
         
         });
     }
@@ -29,6 +29,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('Order');
+        
     }
 };
