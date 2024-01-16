@@ -14,7 +14,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->bigInteger('id');
+            $table->id();
             $table->string("delivery_address");
             $table->dateTime('order_date');
             $table->enum('status', ['ordered', 'paid', 'sent']);
