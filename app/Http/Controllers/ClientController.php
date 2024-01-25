@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\orders;
+use App\Models\Client;
 use Illuminate\Http\Request;
 
-class OrdersController extends Controller
+class ClientController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        return view ('clients.index', [
+            'clients' => Client::with("Orders")->paginate(35)
+        ]);
     }
 
     /**
@@ -34,7 +36,7 @@ class OrdersController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(orders $orders)
+    public function show(client $clients)
     {
         //
     }
@@ -42,7 +44,7 @@ class OrdersController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(orders $orders)
+    public function edit(client $clients)
     {
         //
     }
@@ -50,7 +52,7 @@ class OrdersController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, orders $orders)
+    public function update(Request $request, client $clients)
     {
         //
     }
@@ -58,7 +60,7 @@ class OrdersController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(orders $orders)
+    public function destroy(client $clients)
     {
         //
     }

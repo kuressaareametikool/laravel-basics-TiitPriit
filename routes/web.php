@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\Book;
+use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Models\Author;
-use App\Models\Client;
-use App\Models\Order;
 use App\Http\Controllers\AuthorController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,38 +22,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get("/test", function(){
-//     return Book::with('authors')->first();
-// });
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get("/authors-with-books", function(){
-    return Author::with('books')->get();
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+
+    Route::resource('authors', AuthorController::class);
+    Route::resource('books', BookController::class);
+    Route::resource('clients', ClientController::class);
+    Route::resource('orders', OrderController::class);
 });
 
-Route::get("/clients/orders", function(){
-    return Client::with('orders')->get();
-});
-
-Route::get("/books/orders", function(){
-    return Book::with('orders')->get();
-});
-
-Route::get("/orders/books", function(){
-    return Order::with('books')->get();
-});
-
-Route::get("/orders/client", function(){
-    return Order::with('client')->get();
-});
-
-Route::get("/clients/{clientId}/books", function($clientId){
-    $client = Client::findOrFail($clientId);
-    $books = $client->orders->flatMap(function ($order) {
-        return $order->books;
-    });
-    return $books;
-});
-
-
-
-Route::resource("/authors", AuthorController::class);
+require __DIR__.'/auth.php';
