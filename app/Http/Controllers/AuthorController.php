@@ -12,7 +12,9 @@ class AuthorController extends Controller
      */
     public function index()
     {
-        //
+    return view ('author.index', [
+        'authors' => Author::all()
+    ]);
     }
 
     /**
@@ -36,7 +38,7 @@ class AuthorController extends Controller
      */
     public function show(Author $author)
     {
-        //
+     return $author;
     }
 
     /**

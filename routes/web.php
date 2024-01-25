@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Models\Author;
 use App\Models\Client;
 use App\Models\Order;
+use App\Http\Controllers\AuthorController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,3 +53,7 @@ Route::get("/clients/{clientId}/books", function($clientId){
     });
     return $books;
 });
+
+
+
+Route::resource("/authors", AuthorController::class);

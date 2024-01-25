@@ -14,4 +14,8 @@ class Client extends Model
     {
         return $this->hasMany(Order::class);
     }
+    public function books()
+    {
+        return $this->hasMany(Book::class, order::class, 'client_id', "id", "id", 'book_id');
+    }
 }
