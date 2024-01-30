@@ -22,7 +22,7 @@ class AuthorController extends Controller
      */
     public function create()
     {
-        //
+        return view('author.create');
     }
 
     /**
@@ -30,7 +30,14 @@ class AuthorController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+        ]);
+    
+        Author::create($request->all());
+    
+        return redirect()->route('authors.index');
     }
 
     /**
@@ -55,7 +62,14 @@ class AuthorController extends Controller
      */
     public function update(Request $request, Author $author)
     {
-        //
+        $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+        ]);
+    
+        $author->update($request->all());
+    
+        return redirect()->route('authors.index');
     }
 
     /**

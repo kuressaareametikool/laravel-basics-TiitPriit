@@ -1,5 +1,14 @@
 <x-app-layout>
-<div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+            {{ __('Authors') }}
+        </h2>
+    </x-slot>
+
+    <div class="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="mb-4 flex justify-end">
+            <a href="{{ route('authors.create') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Create</a>
+        </div>
         <ul class="space-y-4">
             @foreach ($authors as $author)
             <li class="p-4 shadow rounded-md">
@@ -25,14 +34,4 @@
             {{ $authors->links() }}
         </div>
     </div>
-
-
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-        
-    </x-slot>
-
-
 </x-app-layout>
