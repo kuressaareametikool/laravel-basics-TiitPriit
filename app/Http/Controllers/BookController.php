@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Book;
 use Illuminate\Http\Request;
+use App\Models\Author;
 
 class BookController extends Controller
 {
@@ -22,7 +23,9 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $authors = Author::all();
+        return view('books.create', compact('authors'));
+
     }
 
     /**
@@ -30,7 +33,24 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'author_id' => 'required|exists:authors,id',
+            'price' => 'required|numeric',
+            "summary" => "required",
+            "release_date" => "required|date",
+            "language" => "required",
+            "cover_path" => "required",
+            "type" => "required",
+            "pages" => "required|numeric",
+            "stock_saldo" => "required|numeric",
+        ]);
+    
+        $book = Book::create($request->only('title', 'price', 'release_date', 'cover_path', 'language', 'summary', 'stock_saldo', 'pages', 'type'));
+    
+        $book->authors()->attach($request->author_id);
+    
+        return redirect()->route('books.index');
     }
 
     /**
