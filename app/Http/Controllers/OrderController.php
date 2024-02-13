@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\order;
 use Illuminate\Http\Request;
+use App\Models\Client;
 
 class OrderController extends Controller
 {
@@ -22,7 +23,8 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        $clients = Client::all();
+        return view('orders.create', compact('clients'));
     }
 
     /**
@@ -30,39 +32,45 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $order = new Order($request->only('delivery_address', 'order_date', 'status', 'client_id', 'book_id'));
+        $order->save();
+
+        return redirect()->route('orders.index');
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(order $orders)
+    public function show(order $order)
     {
-        //
+        // 
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(order $orders)
+    public function edit(Order $order)
     {
-        //
+        $clients = Client::all();
+        return view('orders.edit', compact('order', 'clients'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, order $orders)
+    public function update(Request $request, order $order)
     {
-        //
+        $order->update($request->all());
+
+        return redirect()->route('orders.index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(order $orders)
+    public function destroy(order $order)
     {
-        $orders->delete();
+        $order->delete();
 
         return redirect()->route('orders.index'); 
     }

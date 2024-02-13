@@ -32,26 +32,36 @@ class BookController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        $request->validate([
-            'title' => 'required',
-            'author_id' => 'required|exists:authors,id',
-            'price' => 'required|numeric',
-            "summary" => "required",
-            "release_date" => "required|date",
-            "language" => "required",
-            "cover_path" => "required",
-            "type" => "required",
-            "pages" => "required|numeric",
-            "stock_saldo" => "required|numeric",
-        ]);
-    
-        $book = Book::create($request->only('title', 'price', 'release_date', 'cover_path', 'language', 'summary', 'stock_saldo', 'pages', 'type'));
-    
-        $book->authors()->attach($request->author_id);
-    
-        return redirect()->route('books.index');
-    }
+{
+    $request->validate([
+        'title' => 'required',
+        'author_id' => 'required|exists:authors,id',
+        'price' => 'required|numeric',
+        "summary" => "required",
+        "release_date" => "required|date",
+        "language" => "required",
+        "cover_path" => "required",
+        "type" => "required",
+        "pages" => "required|numeric",
+        "stock_saldo" => "required|numeric",
+    ]);
+
+    $data = $request->all();
+
+    $data['release_date'] = date('Y', strtotime($request->release_date));
+
+    // Remove author_id from $data
+    $author_id = $data['author_id'];
+    unset($data['author_id']);
+
+    $book = Book::create($data);
+
+    // Attach the author to the book
+    $book->authors()->attach($author_id);
+
+    return redirect()->route('books.index');
+}
+
 
     /**
      * Display the specified resource.
@@ -66,7 +76,9 @@ class BookController extends Controller
      */
     public function edit(Book $book)
     {
-        //
+        $authors = Author::all(); // Retrieve all authors
+    
+        return view('books.edit', compact('book', 'authors')); // Pass authors to the view
     }
 
     /**
@@ -74,7 +86,25 @@ class BookController extends Controller
      */
     public function update(Request $request, Book $book)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'release_date' => 'required',
+            'cover_path' => 'required',
+            'language' => 'required',
+            'summary' => 'required',
+            'price' => 'required',
+            'stock_saldo' => 'required',
+            'pages' => 'required',
+            'type' => 'required',
+            'author_id' => 'required',
+        ]);
+    
+        $book->update($request->except('author_id'));
+    
+        // Update the pivot table
+        $book->authors()->sync($request->author_id);
+    
+        return redirect()->route('books.index');
     }
 
     /**
@@ -82,6 +112,8 @@ class BookController extends Controller
      */
     public function destroy(Book $book)
     {
-        //
+        $book->delete();
+
+        return redirect()->route('books.index');
     }
 }

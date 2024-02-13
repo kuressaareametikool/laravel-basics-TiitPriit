@@ -22,21 +22,31 @@ class ClientController extends Controller
      */
     public function create()
     {
-        //
+        return view('clients.create');
     }
 
     /**
      * Store a newly created resource in storage.
      */
     public function store(Request $request)
-    {
-        //
-    }
+{
+    $validatedData = $request->validate([
+        'username' => 'required|max:255',
+        'first_name' => 'required|max:255',
+        'last_name' => 'required|max:255',
+        'email' => 'required|email|max:255',
+        'address' => 'required|max:255',
+    ]);
+
+    $client = Client::create($validatedData);
+
+    return redirect()->route('clients.index', $client);
+}
 
     /**
      * Display the specified resource.
      */
-    public function show(client $clients)
+    public function show(client $client)
     {
         //
     }
@@ -44,25 +54,35 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(client $clients)
+    public function edit(client $client)
     {
-        //
+        return view('clients.edit', ['client' => $client]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, client $clients)
+    public function update(Request $request, client $client)
     {
-        //
+        $validatedData = $request->validate([
+            'username' => 'required|max:255',
+            'first_name' => 'required|max:255',
+            'last_name' => 'required|max:255',
+            'email' => 'required|email|max:255',
+            'address' => 'required|max:255',
+        ]);
+
+        $client->update($validatedData);
+
+        return redirect()->route('clients.index', $client);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(client $clients)
+    public function destroy(client $client)
     {
-        $clients->delete();
+        $client->delete();
 
         return redirect()->route('clients.index'); 
     }
