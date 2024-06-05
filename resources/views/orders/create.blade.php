@@ -15,7 +15,7 @@
                 <label for="status" class="block text-sm font-medium text-gray-200">Status</label>
                 <select name="status" id="status" required class="mt-1 block w-full py-2 px-3 border border-gray-700 bg-gray-900 text-black rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
                     <option value="ordered">Ordered</option>
-                    <option value="payed">Payed</option>
+                    <option value="paid">Paid</option>
                     <option value="sent">Sent</option>
                 </select>
             </div>
